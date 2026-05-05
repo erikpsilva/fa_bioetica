@@ -5,8 +5,8 @@
                 <div class="footerCta__message">
                     <i class="icon icon-maisciencia footerCta__icon" aria-hidden="true"></i>
                     <p class="footerCta__text">
-                        <strong>Voce pode fazer parte dessa transformacao.</strong>
-                        Apoie, doe, apadrinhe e ajude a construir um futuro etico e consciente.
+                        <strong>Você pode fazer parte dessa transformação.</strong>
+                        Apoie, doe, apadrinhe e ajude a construir um futuro ético e consciente.
                     </p>
                 </div>
 
@@ -15,7 +15,7 @@
                         <i class="icon icon-maisciencia" aria-hidden="true"></i>
                         Doe agora
                     </a>
-                    <a class="footerCta__button footerCta__button--outline" href="#apadrinhe">Seja voluntario</a>
+                    <a class="footerCta__button footerCta__button--outline" href="#apadrinhe">Seja voluntário</a>
                 </div>
             </div>
         </div>
@@ -25,8 +25,8 @@
         <div class="container">
             <div class="row align-items-start">
                 <div class="col-md-4">
-                    <a class="footerMain__brand" href="<?= BASE_URL ?>/inicio" aria-label="Forum Nacional de Protecao e Defesa Animal">
-                        <img class="footerMain__logo" src="<?= BASE_URL ?>/images/logoForumAnimal.png" alt="Forum Nacional de Protecao e Defesa Animal">
+                    <a class="footerMain__brand" href="<?= BASE_URL ?>/inicio" aria-label="Fórum Nacional de Proteção e Defesa Animal">
+                        <img class="footerMain__logo" src="<?= BASE_URL ?>/images/logoForumAnimal.png" alt="Fórum Nacional de Proteção e Defesa Animal">
                     </a>
                 </div>
 
@@ -58,7 +58,7 @@
             </div>
 
             <div class="footerMain__copyright">
-                Forum Animal 2026 &copy; Todos os direitos reservados
+                Fórum Animal 2026 &copy; Todos os direitos reservados
             </div>
         </div>
     </div>

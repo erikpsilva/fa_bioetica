@@ -2,12 +2,18 @@
 
 define('ROOT', __DIR__);
 
-// Detecta ambiente
-if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
-    define('BASE_URL', 'http://localhost/fa_bioetica');
-} else {
-    define('BASE_URL', 'https://www.meusite.com.br');
-}
+// BASE_URL detectado automaticamente — funciona em localhost, subdiretório ou domínio raiz
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+$isLocalhost = strpos($host, 'localhost') !== false || strpos($host, '127.0.0.1') !== false;
+$isHttps = (
+    (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ||
+    (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') ||
+    (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on')
+);
+$protocol = ($isHttps || !$isLocalhost) ? 'https' : 'http';
+$basePath = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '')), '/');
+$basePath = ($basePath === '/' || $basePath === '.') ? '' : $basePath;
+define('BASE_URL', $protocol . '://' . $host . $basePath);
 
 define('ADMIN_BASE_URL', BASE_URL . '/admin');
 
