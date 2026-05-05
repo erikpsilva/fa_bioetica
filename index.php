@@ -4,7 +4,7 @@ define('ROOT', __DIR__);
 
 // Detecta ambiente
 if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
-    define('BASE_URL', 'http://localhost/project_php_start');
+    define('BASE_URL', 'http://localhost/fa_bioetica');
 } else {
     define('BASE_URL', 'https://www.meusite.com.br');
 }

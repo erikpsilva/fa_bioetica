@@ -27,7 +27,7 @@ const compileLessAdmin = () =>
 // Inicia o BrowserSync como proxy do XAMPP
 const serve = (done) => {
     bs.init({
-        proxy: 'localhost/project_php_start',
+        proxy: 'localhost/fa_bioetica',
         open: true,
         notify: false,
     });

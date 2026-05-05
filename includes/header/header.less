@@ -1,3 +1,91 @@
 .header {
-  
+    left: 0;
+    padding: 45px 0 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+
+    &__content {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__brand {
+        display: block;
+        line-height: 0;
+    }
+
+    &__logo {
+        display: block;
+        height: auto;
+        width: 160px;
+    }
+
+    &__nav {
+       
+        align-items: center;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        gap: 0;
+        padding: 10px 20px;
+        .radius;
+    }
+
+    &__navLink {
+        color: @white;
+        display: block;
+        font-size: 15px;
+        font-weight: @semi-bold;
+        line-height: 1;
+        padding: 19px 22px;
+        text-transform: uppercase;
+        .transition(0.25s all);
+
+        &:hover,
+        &--active {
+            background: #c72b35;
+            border-radius: 8px;
+            color: @white;
+        }
+    }
+
+    &__menuButton {
+        align-items: center;
+        background: transparent;
+        border: 0;
+        color: @white;
+        cursor: pointer;
+        display: none;
+        font-family: @font;
+        font-size: 9px;
+        font-weight: @semi-bold;
+        gap: 7px;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+
+    &__menuButton .icon {
+        color: @white;
+        font-size: 26px;
+    }
+}
+
+@media @tablet {
+    .header {
+        padding: 11px 0 0;
+
+        &__logo {
+            width: 98px;
+        }
+
+        &__nav {
+            display: none;
+        }
+
+        &__menuButton {
+            display: flex;
+        }
+    }
 }
