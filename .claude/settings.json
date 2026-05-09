@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Set-Location \"c:\\\\xampp\\\\htdocs\\\\fa_bioetica\"; Get-ChildItem -Recurse -Force -ErrorAction SilentlyContinue | Where-Object { $_.PSIsContainer -or $_.Extension -match '\\\\.\\(php|json|htaccess\\)$' } | Sort-Object FullName | Select-Object FullName)",
+      "Bash(xargs grep -l -i \"payment\\\\|pago\\\\|mercado\\\\|stripe\\\\|pagamento\")",
+      "Bash(New-Item -ItemType Directory -Path \"c:\\\\xampp\\\\htdocs\\\\fa_bioetica\\\\admin\\\\pages\\\\doadores\" -Force)",
+      "Bash(Out-Null)",
+      "Bash(Write-Output \"done\")",
+      "PowerShell(New-Item -ItemType Directory -Path \"c:\\\\xampp\\\\htdocs\\\\fa_bioetica\\\\admin\\\\pages\\\\doadores\" -Force)",
+      "PowerShell(New-Item -ItemType Directory -Path \"c:\\\\xampp\\\\htdocs\\\\fa_bioetica\\\\admin\\\\pages\\\\administrarusuarios\" -Force)",
+      "PowerShell(New-Item -ItemType Directory -Path \"c:\\\\xampp\\\\htdocs\\\\fa_bioetica\\\\uploads\\\\banners\" -Force)",
+      "PowerShell(New-Item -ItemType Directory -Path \"c:\\\\xampp\\\\htdocs\\\\fa_bioetica\\\\admin\\\\pages\\\\banners\" -Force)"
+    ]
+  }
+}

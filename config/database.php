@@ -1,9 +1,24 @@
 <?php
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'admin_project_db');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+if (!defined('DB_HOST')) {
+    $isLocalhost = (
+        isset($_SERVER['HTTP_HOST']) &&
+        (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false ||
+         strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false)
+    );
+
+    if ($isLocalhost) {
+        define('DB_HOST', 'localhost');
+        define('DB_NAME', 'forum3858119_bioetica');
+        define('DB_USER', 'root');
+        define('DB_PASS', '');
+    } else {
+        define('DB_HOST', 'localhost');
+        define('DB_NAME', 'forum3858119_bioetica');
+        define('DB_USER', 'forum3858119_user_bioetica');
+        define('DB_PASS', 'Theking!@389518');
+    }
+}
 
 function getDbConnection() {
     try {

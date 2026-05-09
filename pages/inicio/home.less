@@ -234,7 +234,11 @@
 
 .homeCalculator {
     background: #fff4f4;
-    padding: 41px 0 40px;
+    padding: 31px 0;
+
+    .row {
+        align-items: center;
+    }
 
     &__text {
         color: #303030;
@@ -246,46 +250,51 @@
 
     &__panel {
         background: @white;
-        border-radius: 4px;
+        border-radius: 8px;
         display: grid;
-        grid-template-columns: 275px 1fr;
+        grid-template-columns: 296px 1fr;
         margin-left: 10px;
-        min-height: 287px;
-        padding: 28px 16px 24px 27px;
+        min-height: 345px;
+        padding: 17px 26px 23px 27px;
         position: relative;
+    }
+
+    &__form {
+        border-right: 1px solid #cfcfcf;
+        padding-right: 30px;
     }
 
     &__label {
         color: #303030;
-        font-size: 13px;
+        font-size: 17px;
         font-weight: @semi-bold;
         line-height: 1;
         margin: 0 0 14px;
         text-transform: uppercase;
 
         &--spacing {
-            margin-top: 30px;
+            margin-top: 36px;
         }
     }
 
     &__values,
     &__frequency {
         display: grid;
-        gap: 12px;
+        gap: 18px;
         grid-template-columns: repeat(3, 1fr);
     }
 
     &__value,
     &__frequencyButton {
         background: @white;
-        border: 1px solid #aaa;
-        border-radius: 5px;
+        border: 2px solid #c8c8c8;
+        border-radius: 8px;
         color: #303030;
         cursor: pointer;
         font-family: @font;
-        font-size: 13px;
+        font-size: 16px;
         font-weight: @semi-bold;
-        height: 40px;
+        height: 42px;
         .transition(0.25s all);
 
         &--active {
@@ -296,13 +305,14 @@
     }
 
     &__input {
-        border: 1px solid #aaa;
-        border-radius: 5px;
+        border: 2px solid #c8c8c8;
+        border-radius: 8px;
         color: #555;
         font-family: @font;
-        font-size: 13px;
-        height: 40px;
-        margin-top: 12px;
+        font-size: 15px;
+        font-weight: @semi-bold;
+        height: 42px;
+        margin-top: 20px;
         padding: 0 14px;
         width: 100%;
     }
@@ -326,19 +336,27 @@
         width: 100%;
     }
 
+    &__donate {
+        font-size: 13px;
+        height: 42px;
+        margin-top: 26px;
+        min-width: 0;
+        width: 100%;
+    }
+
     &__result {
         display: grid;
-        gap: 24px 27px;
-        grid-template-columns: repeat(2, minmax(130px, 1fr));
-        padding: 20px 0 12px 33px;
+        gap: 27px 22px;
+        grid-template-columns: repeat(2, minmax(160px, 1fr));
+        padding: 37px 0 30px 28px;
         position: relative;
     }
 
     &__tooltip {
         cursor: default;
         position: absolute;
-        right: 0;
-        top: -6px;
+        right: -21px;
+        top: -12px;
 
         &:hover .homeCalculator__tooltipBox {
             opacity: 1;
@@ -391,21 +409,21 @@
 
     &__icon {
         color: #151515;
-        font-size: 44px;
+        font-size: 62px;
         line-height: 1;
     }
 
     &__number {
         align-items: center;
         background: #fff1f1;
-        border-radius: 4px;
+        border-radius: 8px;
         color: #151515;
         display: flex;
-        font-size: 18px;
+        font-size: 22px;
         font-weight: @semi-bold;
-        height: 48px;
+        height: 54px;
         justify-content: center;
-        margin-top: -6px;
+        margin-top: -8px;
         width: 100%;
     }
 }
@@ -793,8 +811,14 @@
 
         &__panel {
             display: block;
+            min-height: 0;
             margin-top: 24px;
             padding: 26px 17px 21px;
+        }
+
+        &__form {
+            border-right: 0;
+            padding-right: 0;
         }
 
         &__label {
@@ -809,9 +833,23 @@
         &__value,
         &__frequencyButton,
         &__input,
-        &__submit {
+        &__submit,
+        &__donate {
             font-size: 10px;
             height: 32px;
+        }
+
+        &__values,
+        &__frequency {
+            gap: 10px;
+        }
+
+        &__input {
+            margin-top: 10px;
+        }
+
+        &__donate {
+            margin-top: 18px;
         }
 
         &__result {

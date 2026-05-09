@@ -1,8 +1,48 @@
+<?php
+require_once ROOT . '/config/database.php';
+try {
+    $stmtBanner = getDbConnection()->prepare("SELECT arquivo FROM banners WHERE pagina = 'home'");
+    $stmtBanner->execute();
+    $bannerHome = ($stmtBanner->fetchColumn() ?: 'images/bannerHome.jpg');
+} catch (Exception $e) {
+    $bannerHome = 'images/bannerHome.jpg';
+}
+try {
+    $stmtT = getDbConnection()->query("SELECT * FROM testemunhos ORDER BY id ASC");
+    $testemunhosDb = $stmtT->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    $testemunhosDb = [];
+}
+function testimonialInitials($nome) {
+    $words = preg_split('/\s+/', trim($nome));
+    $a = mb_strtoupper(mb_substr($words[0], 0, 1, 'UTF-8'), 'UTF-8');
+    $b = count($words) > 1 ? mb_strtoupper(mb_substr(end($words), 0, 1, 'UTF-8'), 'UTF-8') : '';
+    return $a . $b;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <?php include ROOT . '/includes/assets.php';?>
 <title>Fórum Animal Bioética - Início</title>
+<style>
+.homeHero { background-image: url('<?= BASE_URL . '/' . $bannerHome ?>') !important; }</style>
+<style>
+.doacaoModal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9999; align-items: center; justify-content: center; }
+.doacaoModal.is-open { display: flex; }
+.doacaoModal__overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.55); }
+.doacaoModal__box { position: relative; z-index: 1; background: #fff; border-radius: 12px; padding: 40px 36px; width: 100%; max-width: 440px; margin: 16px; box-shadow: 0 8px 40px rgba(0,0,0,.18); }
+.doacaoModal__close { position: absolute; top: 14px; right: 18px; background: none; border: none; font-size: 28px; line-height: 1; cursor: pointer; color: #888; }
+.doacaoModal__close:hover { color: #333; }
+.doacaoModal__title { font-size: 1.3rem; font-weight: 700; margin: 0 0 4px; }
+.doacaoModal__subtitle { font-size: .9rem; color: #666; margin: 0 0 24px; }
+.doacaoModal__field { margin-bottom: 16px; }
+.doacaoModal__label { display: block; font-size: .82rem; font-weight: 600; margin-bottom: 6px; color: #333; }
+.doacaoModal__input { width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: .95rem; box-sizing: border-box; }
+.doacaoModal__input:focus { outline: none; border-color: #a01f2e; }
+.doacaoModal__input.is-invalid { border-color: #dc3545; }
+.doacaoModal__submit { width: 100%; margin-top: 8px; display: flex; justify-content: center; }
+</style>
 </head>
 
 <body>
@@ -30,7 +70,7 @@
                 <div class="col-lg-7">
                     <div class="homeIntro__content">
                         <h2 class="homeTitle">O que é <strong>bioética.</strong></h2>
-                        <p class="homeIntro__lead">É uma ponte que conecta Ciência e Ética<br>A Bioética ajuda na construção de futuro onde o avanço do conhecimento caminhe junto com o avanço moral da sociedade</p>
+                        <p class="homeIntro__lead">É uma ponte que conecta Ciência e Ética<br>A Bioética ajuda na construção de futuro um onde o avanço do conhecimento caminhe junto com o avanço moral da sociedade</p>
 
                         <div class="homeIntro__pillars">
                             <div class="homePillar">
@@ -117,6 +157,8 @@
                                 <button class="homeCalculator__frequencyButton homeCalculator__frequencyButton--active" type="button">Mensal</button>
                                 <button class="homeCalculator__frequencyButton" type="button">Única</button>
                             </div>
+
+                            <a class="homeButton homeButton--primary homeCalculator__donate" href="#">FAZER DOAÇÃO MENSAL</a>
                         </div>
 
                         <div class="homeCalculator__result">
@@ -124,10 +166,10 @@
                                 <i class="icon icon-interrogacao homeCalculator__help" aria-hidden="true"></i>
                                 <div class="homeCalculator__tooltipBox" role="tooltip">Trata-se de uma simplificação baseada em estimativas globais, devendo ser interpretada com cautela, uma vez que a obtenção de valores precisos é dificultada pela subnotificação e pela falta de padronização nos sistemas de coleta e reporte de dados entre países.</div>
                             </div>
-                            <div class="homeAnimalResult"><i class="icon icon-rato homeAnimalResult__icon" aria-hidden="true"></i><strong class="homeAnimalResult__number">2</strong></div>
-                            <div class="homeAnimalResult"><i class="icon icon-pato homeAnimalResult__icon" aria-hidden="true"></i><strong class="homeAnimalResult__number">1</strong></div>
-                            <div class="homeAnimalResult"><i class="icon icon-galinha homeAnimalResult__icon" aria-hidden="true"></i><strong class="homeAnimalResult__number">1</strong></div>
+                            <div class="homeAnimalResult"><i class="icon icon-rato homeAnimalResult__icon" aria-hidden="true"></i><strong class="homeAnimalResult__number">0</strong></div>
                             <div class="homeAnimalResult"><i class="icon icon-peixe homeAnimalResult__icon" aria-hidden="true"></i><strong class="homeAnimalResult__number">0</strong></div>
+                            <div class="homeAnimalResult"><i class="icon icon-galinha homeAnimalResult__icon" aria-hidden="true"></i><strong class="homeAnimalResult__number">0</strong></div>
+                            <div class="homeAnimalResult"><i class="icon icon-outros homeAnimalResult__icon" aria-hidden="true"></i><strong class="homeAnimalResult__number">0</strong></div>
                         </div>
                     </div>
                 </div>
@@ -157,11 +199,34 @@
     </section>
 
     <section class="homeTestimonials" id="testemunhos">
+        <style>
+        .homeTestimonial__quote strong, .homeTestimonial__quote b { font-weight: 600; }
+        .homeTestimonial__quote p { margin: 0 0 .5em; }
+        .homeTestimonial__quote p:last-child { margin-bottom: 0; }
+        </style>
         <div class="container">
             <p class="homeEyebrow homeEyebrow--center">Testemunhos</p>
             <h2 class="homeTitle homeTitle--center">Quem já fez, <strong>recomenda!</strong></h2>
 
             <div class="homeTestimonials__slider">
+            <?php if (!empty($testemunhosDb)): ?>
+                <?php foreach ($testemunhosDb as $t): ?>
+                <div class="homeTestimonials__slide">
+                    <article class="homeTestimonial">
+                        <div class="homeTestimonial__quote"><?= $t['texto'] ?></div>
+                        <div class="homeTestimonial__author">
+                            <span class="homeTestimonial__avatar"><?= testimonialInitials($t['nome']) ?></span>
+                            <p class="homeTestimonial__name">
+                                <strong><?= htmlspecialchars($t['nome']) ?></strong>
+                                <?= $t['profissao'] ? htmlspecialchars($t['profissao']) . '<br>' : '' ?>
+                                <?= htmlspecialchars($t['edicao']) ?>
+                            </p>
+                        </div>
+                        <button class="homeTestimonial__button" type="button">Ver mais</button>
+                    </article>
+                </div>
+                <?php endforeach; ?>
+            <?php else: ?>
                 <div class="homeTestimonials__slide">
                     <article class="homeTestimonial">
                         <p class="homeTestimonial__quote">Curso extremamente completo, com grandes nomes da área e que abrange desde a filosofia da ética até metodologias alternativas. É ótimo para expandir a visão sobre o assunto por diversos ângulos. Recomendo a todos!</p>
@@ -211,15 +276,40 @@
                         <button class="homeTestimonial__button" type="button">Ver mais</button>
                     </article>
                 </div>
+            <?php endif; ?>
             </div>
         </div>
     </section>
+    <div class="doacaoModal" id="doacaoModal">
+        <div class="doacaoModal__overlay"></div>
+        <div class="doacaoModal__box">
+            <button class="doacaoModal__close" type="button" aria-label="Fechar">&times;</button>
+            <h2 class="doacaoModal__title">Complete seus dados</h2>
+            <p class="doacaoModal__subtitle" id="doacaoModalSubtitle"></p>
+            <form id="doacaoModalForm" novalidate>
+                <div class="doacaoModal__field">
+                    <label class="doacaoModal__label" for="doacaoNome">Nome completo</label>
+                    <input class="doacaoModal__input" type="text" id="doacaoNome" placeholder="Seu nome" autocomplete="name">
+                </div>
+                <div class="doacaoModal__field">
+                    <label class="doacaoModal__label" for="doacaoEmail">E-mail</label>
+                    <input class="doacaoModal__input" type="email" id="doacaoEmail" placeholder="seu@email.com" autocomplete="email">
+                </div>
+                <div class="doacaoModal__field">
+                    <label class="doacaoModal__label" for="doacaoTelefone">Telefone</label>
+                    <input class="doacaoModal__input" type="tel" id="doacaoTelefone" placeholder="(00) 00000-0000" autocomplete="tel">
+                </div>
+                <button class="homeButton homeButton--primary doacaoModal__submit" type="submit" id="doacaoSubmit">Ir para o pagamento</button>
+            </form>
+        </div>
+    </div>
 </main>
 
 <?php include ROOT . '/includes/footer/footer.php';?>
 <?php include ROOT . '/includes/scripts.php';?>
 <?php
 $version = time();
+echo '<script>window.APP_BASE_URL = "' . BASE_URL . '";</script>';
 echo '<script src="' . BASE_URL . '/pages/inicio/home.js?' . $version . '"></script>';
 ?>
 

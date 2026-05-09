@@ -1,0 +1,42 @@
+/* Forum Animal brand override — substitui o verde #0a896e pelo vermelho #a01f2e */
+
+.btn--primary {
+    background: #a01f2e;
+    border-color: #a01f2e;
+}
+.btn--primary:hover {
+    background: #fff;
+    border-color: #a01f2e;
+    color: #a01f2e;
+}
+
+.sidebar__link:hover {
+    border-left-color: #a01f2e;
+    color: #a01f2e;
+}
+.sidebar__link--active {
+    border-left-color: #a01f2e;
+    color: #a01f2e;
+}
+
+.dashCard--total  { border-left-color: #a01f2e; }
+.dashCard--total  .dashCard__number { color: #a01f2e; }
+.dashCard--admin  { border-left-color: #a01f2e; }
+.dashCard--admin  .dashCard__number { color: #a01f2e; }
+
+.nivelBadge--admin {
+    background: rgba(160,31,46,.12);
+    color: #871a27;
+}
+
+.loader {
+    --c: no-repeat linear-gradient(#a01f2e 0 0);
+    background: var(--c), var(--c), #f5d0d3;
+}
+
+.formGroup__item input:focus-visible,
+.formGroup__item select:focus-visible,
+.formGroup__item textarea:focus-visible {
+    border: 2px solid #a01f2e;
+    outline: 0;
+}

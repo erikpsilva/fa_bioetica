@@ -8,7 +8,7 @@
                     <span></span>
                     <span></span>
                 </button>
-                <img src="<?= ADMIN_BASE_URL ?>/images/logo.png" alt="logo" />
+                <img src="<?= BASE_URL ?>/images/logoForumAnimal.png" alt="Fórum Animal" />
             </div>
 
             <div class="col-6 header__user">

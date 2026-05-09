@@ -23,6 +23,41 @@
                     Cadastrar Usuário
                 </a>
             </li>
+
+            <li class="sidebar__item">
+                <a href="<?= BASE_URL ?>/admin/administrarusuarios"
+                   class="sidebar__link <?= ($subRoute === 'administrarusuarios') ? 'sidebar__link--active' : '' ?>">
+                    Administrar Usuários
+                </a>
+            </li>
+
+            <li class="sidebar__item">
+                <a href="<?= BASE_URL ?>/admin/doadores"
+                   class="sidebar__link <?= ($subRoute === 'doadores') ? 'sidebar__link--active' : '' ?>">
+                    Doadores
+                </a>
+            </li>
+
+            <li class="sidebar__item">
+                <a href="<?= BASE_URL ?>/admin/testemunhos"
+                   class="sidebar__link <?= ($subRoute === 'testemunhos') ? 'sidebar__link--active' : '' ?>">
+                    Testemunhos
+                </a>
+            </li>
+
+            <li class="sidebar__item">
+                <a href="<?= BASE_URL ?>/admin/banners"
+                   class="sidebar__link <?= ($subRoute === 'banners') ? 'sidebar__link--active' : '' ?>">
+                    Banners
+                </a>
+            </li>
+
+            <li class="sidebar__item">
+                <a href="<?= BASE_URL ?>/admin/configuracoes"
+                   class="sidebar__link <?= ($subRoute === 'configuracoes') ? 'sidebar__link--active' : '' ?>">
+                    Configurações
+                </a>
+            </li>
             <?php endif; ?>
 
         </ul>
