@@ -38,6 +38,42 @@
                 </a>
             </li>
 
+            <?php
+            $conteudoSubs = ['conteudo-banner', 'conteudo-intro', 'conteudo-apoiar', 'conteudo-apadrinhe'];
+            $conteudoAberto = in_array($subRoute, $conteudoSubs);
+            ?>
+            <li class="sidebar__item">
+                <button class="sidebar__link--parent <?= $conteudoAberto ? 'is-open is-active' : '' ?>" id="toggleConteudo">
+                    Conteúdo <span class="sidebar__arrow">&#9660;</span>
+                </button>
+                <ul class="sidebar__sub <?= $conteudoAberto ? 'is-open' : '' ?>" id="subConteudo">
+                    <li>
+                        <a href="<?= BASE_URL ?>/admin/conteudo-banner"
+                           class="sidebar__subLink <?= ($subRoute === 'conteudo-banner') ? 'sidebar__subLink--active' : '' ?>">
+                            Banner Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= BASE_URL ?>/admin/conteudo-intro"
+                           class="sidebar__subLink <?= ($subRoute === 'conteudo-intro') ? 'sidebar__subLink--active' : '' ?>">
+                            Introdução
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= BASE_URL ?>/admin/conteudo-apoiar"
+                           class="sidebar__subLink <?= ($subRoute === 'conteudo-apoiar') ? 'sidebar__subLink--active' : '' ?>">
+                            Por que apoiar
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= BASE_URL ?>/admin/conteudo-apadrinhe"
+                           class="sidebar__subLink <?= ($subRoute === 'conteudo-apadrinhe') ? 'sidebar__subLink--active' : '' ?>">
+                            Apadrinhe
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="sidebar__item">
                 <a href="<?= BASE_URL ?>/admin/testemunhos"
                    class="sidebar__link <?= ($subRoute === 'testemunhos') ? 'sidebar__link--active' : '' ?>">
@@ -65,3 +101,16 @@
 </aside>
 
 <div class="sidebar__overlay" id="sidebarOverlay"></div>
+<script>
+(function(){
+    var btn = document.getElementById('toggleConteudo');
+    var sub = document.getElementById('subConteudo');
+    if (btn && sub) {
+        btn.addEventListener('click', function(){
+            this.classList.toggle('is-open');
+            this.classList.toggle('is-active');
+            sub.classList.toggle('is-open');
+        });
+    }
+})();
+</script>

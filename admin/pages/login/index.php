@@ -11,7 +11,36 @@ if (!empty($_SESSION['usuario'])) {
 <title>Fórum Animal Bioética - Admin - Login</title>
 
 <?php include ROOT . '/admin/includes/assets.php';?>
+<style>
+body { background: #1a1a1a; }
 
+.adminLogin .formGroup {
+    background: #2a2a2a;
+    border-color: #444;
+}
+.adminLogin .formGroup__divisor h3 {
+    color: #fff;
+    border-bottom-color: #444;
+}
+.adminLogin .formGroup__divisor h3 span {
+    color: #fff;
+}
+.adminLogin .formGroup__item label {
+    color: #ccc;
+}
+.adminLogin .formGroup__item input {
+    background: #1a1a1a;
+    border-color: #555;
+    color: #fff;
+}
+.adminLogin .formGroup__item input::placeholder {
+    color: #777;
+}
+.adminLogin .formGroup__item input:focus-visible {
+    border-color: #a01f2e;
+    outline: 0;
+}
+</style>
 </head>
 
 <body>
@@ -24,7 +53,7 @@ if (!empty($_SESSION['usuario'])) {
             <div class="row">
 
                 <div class="col-md-12">
-                    <img class="adminLogin__content__logo" src="<?= ADMIN_BASE_URL ?>/images/logo.png" alt="logo" />
+                    <img class="adminLogin__content__logo" src="<?= BASE_URL ?>/images/logoForumAnimal.png" alt="Fórum Animal" />
                 </div>
 
                 <div class="col-md-12 formGroup__divisor">
