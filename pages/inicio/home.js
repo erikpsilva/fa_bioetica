@@ -197,7 +197,7 @@ $(document).ready(function() {
         });
     });
 
-    // Botão de doação — abre a modal
+    // Botão de doação da calculadora — abre a modal
     $calcPanel.on('click', '.homeCalculator__donate', function(e) {
         e.preventDefault();
         var amount = getAmount();
@@ -206,6 +206,14 @@ $(document).ready(function() {
             return;
         }
         openDoacaoModal(amount, isMensal() ? 'mensal' : 'unica');
+    });
+
+    // Botão "Quero Apadrinhar" — cobrança única com valor fixo do admin
+    $(document).on('click', '.homeSponsor__button', function(e) {
+        e.preventDefault();
+        var amount = parseFloat($(this).data('valor'));
+        if (!amount || amount <= 0) return;
+        openDoacaoModal(amount, 'unica');
     });
 
     // Estado inicial (R$60 mensal)

@@ -15,11 +15,11 @@ try {
 }
 $bh = ['titulo' => 'Bioética', 'subtitulo' => 'Nos ajude a ajudar os animais usados na ciência.', 'texto' => 'Promovemos a substituição do uso prejudicial de animais em pesquisas, ensino e testes, por um futuro mais justo e consciente.'];
 try { $r = getDbConnection()->query("SELECT * FROM conteudo_banner_home WHERE id = 1")->fetch(); if ($r) $bh = $r; } catch (Exception $e) {}
-$ci = ['pretitulo' => null, 'titulo' => 'O que é', 'titulo_destaque' => 'bioética.', 'texto' => "É uma ponte que conecta Ciência e Ética\nA Bioética ajuda na construção de futuro um onde o avanço do conhecimento caminhe junto com o avanço moral da sociedade", 'imagem' => 'images/imgRato.jpg', 't1_titulo' => 'Menos sofrimento', 't1_texto' => 'Redução do uso de animais na ciência.', 't2_titulo' => 'Mais ciência', 't2_texto' => 'Fomento a métodos modernos e eficazes.', 't3_titulo' => 'Mais consciência', 't3_texto' => 'Formação de pessoas críticas e preparadas.'];
+$ci = ['pretitulo' => null, 'titulo' => 'O que é <strong>bioética.</strong>', 'texto' => "É uma ponte que conecta Ciência e Ética\nA Bioética ajuda na construção de futuro um onde o avanço do conhecimento caminhe junto com o avanço moral da sociedade", 'imagem' => 'images/imgRato.jpg', 't1_titulo' => 'Menos sofrimento', 't1_texto' => 'Redução do uso de animais na ciência.', 't2_titulo' => 'Mais ciência', 't2_texto' => 'Fomento a métodos modernos e eficazes.', 't3_titulo' => 'Mais consciência', 't3_texto' => 'Formação de pessoas críticas e preparadas.'];
 try { $r = getDbConnection()->query("SELECT * FROM conteudo_intro WHERE id = 1")->fetch(); if ($r) $ci = $r; } catch (Exception $e) {}
-$cp = ['pretitulo' => 'Por que nos apoiar?', 'titulo' => 'Três frentes', 'titulo_destaque' => 'um só propósito', 'texto1' => '<p>Animais ainda sofrem todos os dias em nome da ciência, mesmo quando isso já poderia ser evitado.</p><p>Ao apoiar essa causa, você ajuda a mudar essa realidade de dentro para fora: formando profissionais, influenciando decisões e reduzindo o uso de animais de forma efetiva.</p><p>Cada contribuição gera impacto real. Menos sofrimento. Mais ciência. Mais consciência.</p>', 't1_titulo' => '+500 mil', 't1_texto' => 'Animais impactados diretamente por ano.', 't2_titulo' => 'Atuação', 't2_texto' => 'em comissões de éticas e políticas públicas.', 't3_titulo' => 'Formação', 't3_texto' => 'que transforma e multiplica o impacto', 'texto2' => '<p>O Fórum Animal trabalha para transformar a ciência, reduzindo e substituindo o uso de animais em pesquisas e ensino.</p><p>Em vez de atuar apenas nas consequências, atuamos na origem do problema: nas decisões que autorizam o uso de animais.</p><p>Por meio da atuação em comissões de ética (CEUAs), da formação de representantes da sociedade e da promoção de métodos alternativos, conseguimos gerar mudanças reais dentro de universidades, laboratórios e políticas públicas.</p><p>Esse trabalho já contribuiu para avanços importantes, como a proibição de testes em cosméticos e a adoção de métodos mais éticos e eficazes na ciência.</p><p>Ao apoiar essa causa, você não está apenas ajudando animais individualmente, você está ajudando a transformar todo o sistema que impacta milhões deles.</p>', 'botao_texto' => 'Saiba mais sobre bioética', 'botao_link' => '#bioetica'];
+$cp = ['pretitulo' => 'Por que nos apoiar?', 'titulo' => 'Três frentes <strong>um só propósito</strong>', 'texto1' => '<p>Animais ainda sofrem todos os dias em nome da ciência, mesmo quando isso já poderia ser evitado.</p><p>Ao apoiar essa causa, você ajuda a mudar essa realidade de dentro para fora: formando profissionais, influenciando decisões e reduzindo o uso de animais de forma efetiva.</p><p>Cada contribuição gera impacto real. Menos sofrimento. Mais ciência. Mais consciência.</p>', 't1_titulo' => '+500 mil', 't1_texto' => 'Animais impactados diretamente por ano.', 't2_titulo' => 'Atuação', 't2_texto' => 'em comissões de éticas e políticas públicas.', 't3_titulo' => 'Formação', 't3_texto' => 'que transforma e multiplica o impacto', 'texto2' => '<p>O Fórum Animal trabalha para transformar a ciência, reduzindo e substituindo o uso de animais em pesquisas e ensino.</p><p>Em vez de atuar apenas nas consequências, atuamos na origem do problema: nas decisões que autorizam o uso de animais.</p><p>Por meio da atuação em comissões de ética (CEUAs), da formação de representantes da sociedade e da promoção de métodos alternativos, conseguimos gerar mudanças reais dentro de universidades, laboratórios e políticas públicas.</p><p>Esse trabalho já contribuiu para avanços importantes, como a proibição de testes em cosméticos e a adoção de métodos mais éticos e eficazes na ciência.</p><p>Ao apoiar essa causa, você não está apenas ajudando animais individualmente, você está ajudando a transformar todo o sistema que impacta milhões deles.</p>', 'botao_texto' => 'Saiba mais sobre bioética', 'botao_link' => '#bioetica'];
 try { $r = getDbConnection()->query("SELECT * FROM conteudo_apoiar WHERE id = 1")->fetch(); if ($r) $cp = $r; } catch (Exception $e) {}
-$ca = ['pretitulo' => 'Apadrinhe', 'titulo' => 'Veja porque sua doação', 'titulo_destaque' => 'pode mudar vidas.', 'texto' => '<p>Somos financiados exclusivamente por pessoas que acreditam na ciência sem animais. Atuamos onde as decisões realmente acontecem: nas comissões de ética, regulações e normas científicas.</p><p>Nossa missão é reduzir e substituir o uso de animais em pesquisa e ensino. É dentro das <strong>CEUAs (Comissões de Ética no Uso de Animais)</strong> que esse impacto começa.</p><p>Nosso principal instrumento é o <em>Curso de Formação em Proteção dos Animais nas CEUAs</em>, em parceria com a UFPR. Ele prepara representantes da sociedade civil para atuar nessas comissões, influenciando diretamente a aprovação de projetos com animais.</p><p>Cada representante pode impactar centenas ou até <strong>milhares de animais por ano</strong> em uma única instituição.</p>', 'imagem' => 'images/imgCientista.jpg'];
+$ca = ['pretitulo' => 'Apadrinhe', 'titulo' => 'Veja porque sua doação <strong>pode mudar vidas.</strong>', 'texto' => '<p>Somos financiados exclusivamente por pessoas que acreditam na ciência sem animais. Atuamos onde as decisões realmente acontecem: nas comissões de ética, regulações e normas científicas.</p><p>Nossa missão é reduzir e substituir o uso de animais em pesquisa e ensino. É dentro das <strong>CEUAs (Comissões de Ética no Uso de Animais)</strong> que esse impacto começa.</p><p>Nosso principal instrumento é o <em>Curso de Formação em Proteção dos Animais nas CEUAs</em>, em parceria com a UFPR. Ele prepara representantes da sociedade civil para atuar nessas comissões, influenciando diretamente a aprovação de projetos com animais.</p><p>Cada representante pode impactar centenas ou até <strong>milhares de animais por ano</strong> em uma única instituição.</p>', 'imagem' => 'images/imgCientista.jpg', 'botao_texto' => 'QUERO APADRINHAR', 'botao_valor' => 120.00];
 try { $r = getDbConnection()->query("SELECT * FROM conteudo_apadrinhe WHERE id = 1")->fetch(); if ($r) $ca = $r; } catch (Exception $e) {}
 function quillInline($html) {
     $html = trim($html);
@@ -103,7 +103,7 @@ function testimonialInitials($nome) {
                         <?php if (!empty($ci['pretitulo'])): ?>
                         <p class="homeEyebrow"><?= htmlspecialchars($ci['pretitulo']) ?></p>
                         <?php endif; ?>
-                        <h2 class="homeTitle"><?= quillInline($ci['titulo']) ?> <strong><?= quillInline($ci['titulo_destaque']) ?></strong></h2>
+                        <h2 class="homeTitle"><?= quillInline($ci['titulo']) ?></h2>
                         <div class="homeIntro__lead"><?= $ci['texto'] ?></div>
 
                         <div class="homeIntro__pillars">
@@ -135,7 +135,7 @@ function testimonialInitials($nome) {
             <?php if (!empty($cp['pretitulo'])): ?>
             <p class="homeEyebrow"><?= htmlspecialchars($cp['pretitulo']) ?></p>
             <?php endif; ?>
-            <h2 class="homeTitle"><?= quillInline($cp['titulo']) ?> <strong><?= quillInline($cp['titulo_destaque']) ?></strong></h2>
+            <h2 class="homeTitle"><?= quillInline($cp['titulo']) ?></h2>
             <div class="homeSupport__paragraphs"><?= $cp['texto1'] ?></div>
 
             <div class="homeSupport__cards">
@@ -215,8 +215,12 @@ function testimonialInitials($nome) {
                     <?php if (!empty($ca['pretitulo'])): ?>
                     <p class="homeEyebrow"><?= htmlspecialchars($ca['pretitulo']) ?></p>
                     <?php endif; ?>
-                    <h2 class="homeTitle"><?= quillInline($ca['titulo']) ?> <strong><?= quillInline($ca['titulo_destaque']) ?></strong></h2>
+                    <h2 class="homeTitle"><?= quillInline($ca['titulo']) ?></h2>
                     <div class="homeSponsor__text"><?= $ca['texto'] ?></div>
+                    <button type="button"
+                            class="homeButton homeButton--primary homeSponsor__button"
+                            data-valor="<?= htmlspecialchars(number_format((float)($ca['botao_valor'] ?? 120), 2, '.', '')) ?>">
+                        <?= htmlspecialchars($ca['botao_texto'] ?? 'QUERO APADRINHAR') ?></button>
                 </div>
 
                 <div class="col-lg-5">

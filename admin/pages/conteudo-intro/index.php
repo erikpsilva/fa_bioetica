@@ -3,8 +3,7 @@
 require_once ROOT . '/config/database.php';
 $ci = [
     'pretitulo'       => '',
-    'titulo'          => 'O que é',
-    'titulo_destaque' => 'bioética.',
+    'titulo'          => 'O que é <strong>bioética.</strong>',
     'texto'           => "É uma ponte que conecta Ciência e Ética\nA Bioética ajuda na construção de futuro um onde o avanço do conhecimento caminhe junto com o avanço moral da sociedade",
     'imagem'          => 'images/imgRato.jpg',
     't1_titulo' => 'Menos sofrimento',  't1_texto' => 'Redução do uso de animais na ciência.',
@@ -51,21 +50,12 @@ try { $r = getDbConnection()->query("SELECT * FROM conteudo_intro WHERE id = 1")
                                    placeholder="Ex: Saiba mais">
                         </div>
 
-                        <div class="contRow">
-                            <div class="contField">
-                                <label>Título <em>*</em></label>
-                                <div class="contQuillWrap contQuillWrap--sm" id="wrapTitulo">
-                                    <div id="edTitulo"></div>
-                                </div>
-                                <input type="hidden" name="titulo" id="inpTitulo">
+                        <div class="contField">
+                            <label>Título <em>* (use negrito para destacar partes do texto)</em></label>
+                            <div class="contQuillWrap contQuillWrap--sm" id="wrapTitulo">
+                                <div id="edTitulo"></div>
                             </div>
-                            <div class="contField">
-                                <label>Complemento em destaque <em>* (aparece em negrito após o título)</em></label>
-                                <div class="contQuillWrap contQuillWrap--sm" id="wrapTituloD">
-                                    <div id="edTituloD"></div>
-                                </div>
-                                <input type="hidden" name="titulo_destaque" id="inpTituloD">
-                            </div>
+                            <input type="hidden" name="titulo" id="inpTitulo">
                         </div>
 
                         <div class="contField">
@@ -152,7 +142,6 @@ try { $r = getDbConnection()->query("SELECT * FROM conteudo_intro WHERE id = 1")
     // Initialize all Quill editors
     var fields = {
         Titulo:  makeQuill('edTitulo',  'inpTitulo',  <?= json_encode($ci['titulo']) ?>),
-        TituloD: makeQuill('edTituloD', 'inpTituloD', <?= json_encode($ci['titulo_destaque']) ?>),
         Texto:   makeQuill('edTexto',   'inpTexto',   <?= json_encode($ci['texto']) ?>),
         T1titulo: makeQuill('edT1titulo', 'inpT1titulo', <?= json_encode($ci['t1_titulo']) ?>),
         T1texto:  makeQuill('edT1texto',  'inpT1texto',  <?= json_encode($ci['t1_texto']) ?>),
@@ -178,7 +167,7 @@ try { $r = getDbConnection()->query("SELECT * FROM conteudo_intro WHERE id = 1")
         var fb  = document.getElementById('feedback');
         var valid = true;
 
-        ['Titulo', 'TituloD', 'Texto', 'T1titulo', 'T1texto', 'T2titulo', 'T2texto', 'T3titulo', 'T3texto'].forEach(function (key) {
+        ['Titulo', 'Texto', 'T1titulo', 'T1texto', 'T2titulo', 'T2texto', 'T3titulo', 'T3texto'].forEach(function (key) {
             var inp  = document.getElementById('inp' + key);
             var wrap = document.getElementById('wrap' + key);
             if (isEmpty(inp ? inp.value : '')) { if (wrap) wrap.classList.add('is-invalid'); valid = false; }

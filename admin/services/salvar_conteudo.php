@@ -56,18 +56,17 @@ if ($secao === 'banner_home') {
 
 /* ── Conteúdo Introdução ─────────────────────────────────────── */
 if ($secao === 'intro') {
-    $pretitulo       = trim($_POST['pretitulo']       ?? '') ?: null;
-    $titulo          = cleanHtml($_POST['titulo']          ?? '');
-    $titulo_destaque = cleanHtml($_POST['titulo_destaque'] ?? '');
-    $texto           = cleanHtml($_POST['texto']           ?? '');
-    $t1_titulo       = cleanHtml($_POST['t1_titulo']       ?? '');
-    $t1_texto        = cleanHtml($_POST['t1_texto']        ?? '');
-    $t2_titulo       = cleanHtml($_POST['t2_titulo']       ?? '');
-    $t2_texto        = cleanHtml($_POST['t2_texto']        ?? '');
-    $t3_titulo       = cleanHtml($_POST['t3_titulo']       ?? '');
-    $t3_texto        = cleanHtml($_POST['t3_texto']        ?? '');
+    $pretitulo = trim($_POST['pretitulo'] ?? '') ?: null;
+    $titulo    = cleanHtml($_POST['titulo']    ?? '');
+    $texto     = cleanHtml($_POST['texto']     ?? '');
+    $t1_titulo = cleanHtml($_POST['t1_titulo'] ?? '');
+    $t1_texto  = cleanHtml($_POST['t1_texto']  ?? '');
+    $t2_titulo = cleanHtml($_POST['t2_titulo'] ?? '');
+    $t2_texto  = cleanHtml($_POST['t2_texto']  ?? '');
+    $t3_titulo = cleanHtml($_POST['t3_titulo'] ?? '');
+    $t3_texto  = cleanHtml($_POST['t3_texto']  ?? '');
 
-    if (!$titulo || !$titulo_destaque || !$texto || !$t1_titulo || !$t1_texto || !$t2_titulo || !$t2_texto || !$t3_titulo || !$t3_texto) {
+    if (!$titulo || !$texto || !$t1_titulo || !$t1_texto || !$t2_titulo || !$t2_texto || !$t3_titulo || !$t3_texto) {
         http_response_code(400);
         echo json_encode(['success' => false, 'message' => 'Preencha todos os campos obrigatórios.']);
         exit;
@@ -122,7 +121,7 @@ if ($secao === 'intro') {
                t1_titulo=VALUES(t1_titulo), t1_texto=VALUES(t1_texto),
                t2_titulo=VALUES(t2_titulo), t2_texto=VALUES(t2_texto),
                t3_titulo=VALUES(t3_titulo), t3_texto=VALUES(t3_texto)"
-        )->execute([$pretitulo, $titulo, $titulo_destaque, $texto, $imagemAtual,
+        )->execute([$pretitulo, $titulo, '', $texto, $imagemAtual,
                     $t1_titulo, $t1_texto, $t2_titulo, $t2_texto, $t3_titulo, $t3_texto]);
 
         echo json_encode(['success' => true, 'imagem' => $imagemNova]);
@@ -135,22 +134,21 @@ if ($secao === 'intro') {
 
 /* ── Conteúdo Por que Apoiar ─────────────────────────────────── */
 if ($secao === 'apoiar') {
-    $pretitulo       = trim($_POST['pretitulo']       ?? '') ?: null;
-    $titulo          = cleanHtml($_POST['titulo']          ?? '');
-    $titulo_destaque = cleanHtml($_POST['titulo_destaque'] ?? '');
-    $texto1          = cleanHtml($_POST['texto1']          ?? '');
-    $t1_titulo       = cleanHtml($_POST['t1_titulo']       ?? '');
-    $t1_texto        = cleanHtml($_POST['t1_texto']        ?? '');
-    $t2_titulo       = cleanHtml($_POST['t2_titulo']       ?? '');
-    $t2_texto        = cleanHtml($_POST['t2_texto']        ?? '');
-    $t3_titulo       = cleanHtml($_POST['t3_titulo']       ?? '');
-    $t3_texto        = cleanHtml($_POST['t3_texto']        ?? '');
-    $texto2          = cleanHtml($_POST['texto2']          ?? '');
-    $botao_texto     = trim($_POST['botao_texto']     ?? '');
-    $botao_link      = trim($_POST['botao_link']      ?? '');
-    $botao_target    = !empty($_POST['botao_nova_aba']) ? '_blank' : '_self';
+    $pretitulo    = trim($_POST['pretitulo'] ?? '') ?: null;
+    $titulo       = cleanHtml($_POST['titulo']   ?? '');
+    $texto1       = cleanHtml($_POST['texto1']   ?? '');
+    $t1_titulo    = cleanHtml($_POST['t1_titulo'] ?? '');
+    $t1_texto     = cleanHtml($_POST['t1_texto']  ?? '');
+    $t2_titulo    = cleanHtml($_POST['t2_titulo'] ?? '');
+    $t2_texto     = cleanHtml($_POST['t2_texto']  ?? '');
+    $t3_titulo    = cleanHtml($_POST['t3_titulo'] ?? '');
+    $t3_texto     = cleanHtml($_POST['t3_texto']  ?? '');
+    $texto2       = cleanHtml($_POST['texto2']   ?? '');
+    $botao_texto  = trim($_POST['botao_texto']  ?? '');
+    $botao_link   = trim($_POST['botao_link']   ?? '');
+    $botao_target = !empty($_POST['botao_nova_aba']) ? '_blank' : '_self';
 
-    if (!$titulo || !$titulo_destaque || !$texto1 || !$t1_titulo || !$t1_texto ||
+    if (!$titulo || !$texto1 || !$t1_titulo || !$t1_texto ||
         !$t2_titulo || !$t2_texto || !$t3_titulo || !$t3_texto || !$texto2 || !$botao_texto || !$botao_link) {
         http_response_code(400);
         echo json_encode(['success' => false, 'message' => 'Preencha todos os campos obrigatórios.']);
@@ -170,7 +168,7 @@ if ($secao === 'apoiar') {
                t3_titulo=VALUES(t3_titulo), t3_texto=VALUES(t3_texto),
                texto2=VALUES(texto2), botao_texto=VALUES(botao_texto), botao_link=VALUES(botao_link),
                botao_target=VALUES(botao_target)"
-        )->execute([$pretitulo, $titulo, $titulo_destaque, $texto1,
+        )->execute([$pretitulo, $titulo, '', $texto1,
                     $t1_titulo, $t1_texto, $t2_titulo, $t2_texto, $t3_titulo, $t3_texto,
                     $texto2, $botao_texto, $botao_link, $botao_target]);
         echo json_encode(['success' => true]);
@@ -183,12 +181,13 @@ if ($secao === 'apoiar') {
 
 /* ── Conteúdo Apadrinhe ──────────────────────────────────────── */
 if ($secao === 'apadrinhe') {
-    $pretitulo       = trim($_POST['pretitulo']       ?? '') ?: null;
-    $titulo          = cleanHtml($_POST['titulo']          ?? '');
-    $titulo_destaque = cleanHtml($_POST['titulo_destaque'] ?? '');
-    $texto           = cleanHtml($_POST['texto']           ?? '');
+    $pretitulo   = trim($_POST['pretitulo'] ?? '') ?: null;
+    $titulo      = cleanHtml($_POST['titulo']      ?? '');
+    $texto       = cleanHtml($_POST['texto']       ?? '');
+    $botao_texto = trim($_POST['botao_texto'] ?? '');
+    $botao_valor = (float)($_POST['botao_valor'] ?? 0);
 
-    if (!$titulo || !$titulo_destaque || !$texto) {
+    if (!$titulo || !$texto || !$botao_texto || $botao_valor <= 0) {
         http_response_code(400);
         echo json_encode(['success' => false, 'message' => 'Preencha todos os campos obrigatórios.']);
         exit;
@@ -233,12 +232,13 @@ if ($secao === 'apadrinhe') {
             ?? ($pdo->query("SELECT imagem FROM conteudo_apadrinhe WHERE id = 1")->fetchColumn() ?: 'images/imgCientista.jpg');
 
         $pdo->prepare(
-            "INSERT INTO conteudo_apadrinhe (id, pretitulo, titulo, titulo_destaque, texto, imagem)
-             VALUES (1,?,?,?,?,?)
+            "INSERT INTO conteudo_apadrinhe (id, pretitulo, titulo, titulo_destaque, texto, imagem, botao_texto, botao_valor)
+             VALUES (1,?,?,?,?,?,?,?)
              ON DUPLICATE KEY UPDATE
-               pretitulo=VALUES(pretitulo), titulo=VALUES(titulo), titulo_destaque=VALUES(titulo_destaque),
-               texto=VALUES(texto), imagem=VALUES(imagem)"
-        )->execute([$pretitulo, $titulo, $titulo_destaque, $texto, $imagemAtual]);
+               pretitulo=VALUES(pretitulo), titulo=VALUES(titulo),
+               texto=VALUES(texto), imagem=VALUES(imagem),
+               botao_texto=VALUES(botao_texto), botao_valor=VALUES(botao_valor)"
+        )->execute([$pretitulo, $titulo, '', $texto, $imagemAtual, $botao_texto, $botao_valor]);
 
         echo json_encode(['success' => true, 'imagem' => $imagemNova]);
     } catch (Exception $e) {

@@ -3,8 +3,7 @@
 require_once ROOT . '/config/database.php';
 $cp = [
     'pretitulo'       => 'Por que nos apoiar?',
-    'titulo'          => 'Três frentes',
-    'titulo_destaque' => 'um só propósito',
+    'titulo'          => 'Três frentes <strong>um só propósito</strong>',
     'texto1'          => '<p>Animais ainda sofrem todos os dias em nome da ciência, mesmo quando isso já poderia ser evitado.</p><p>Ao apoiar essa causa, você ajuda a mudar essa realidade de dentro para fora: formando profissionais, influenciando decisões e reduzindo o uso de animais de forma efetiva.</p><p>Cada contribuição gera impacto real. Menos sofrimento. Mais ciência. Mais consciência.</p>',
     't1_titulo'       => '+500 mil',
     't1_texto'        => 'Animais impactados diretamente por ano.',
@@ -56,21 +55,12 @@ try { $r = getDbConnection()->query("SELECT * FROM conteudo_apoiar WHERE id = 1"
                                    placeholder="Ex: Por que nos apoiar?">
                         </div>
 
-                        <div class="contRow">
-                            <div class="contField">
-                                <label>Título <em>*</em></label>
-                                <div class="contQuillWrap contQuillWrap--sm" id="wrapTitulo">
-                                    <div id="edTitulo"></div>
-                                </div>
-                                <input type="hidden" name="titulo" id="inpTitulo">
+                        <div class="contField">
+                            <label>Título <em>* (use negrito para destacar partes do texto)</em></label>
+                            <div class="contQuillWrap contQuillWrap--sm" id="wrapTitulo">
+                                <div id="edTitulo"></div>
                             </div>
-                            <div class="contField">
-                                <label>Complemento em destaque <em>* (aparece em negrito após o título)</em></label>
-                                <div class="contQuillWrap contQuillWrap--sm" id="wrapTituloD">
-                                    <div id="edTituloD"></div>
-                                </div>
-                                <input type="hidden" name="titulo_destaque" id="inpTituloD">
-                            </div>
+                            <input type="hidden" name="titulo" id="inpTitulo">
                         </div>
 
                         <div class="contField">
@@ -170,7 +160,6 @@ try { $r = getDbConnection()->query("SELECT * FROM conteudo_apoiar WHERE id = 1"
     function isEmpty(html) { return html.replace(/<[^>]*>/g, '').trim() === ''; }
 
     makeQuill('edTitulo',  'inpTitulo',  <?= json_encode($cp['titulo']) ?>);
-    makeQuill('edTituloD', 'inpTituloD', <?= json_encode($cp['titulo_destaque']) ?>);
     makeQuill('edTexto1',  'inpTexto1',  <?= json_encode($cp['texto1']) ?>);
     makeQuill('edT1titulo','inpT1titulo',<?= json_encode($cp['t1_titulo']) ?>);
     makeQuill('edT1texto', 'inpT1texto', <?= json_encode($cp['t1_texto']) ?>);
@@ -180,7 +169,7 @@ try { $r = getDbConnection()->query("SELECT * FROM conteudo_apoiar WHERE id = 1"
     makeQuill('edT3texto', 'inpT3texto', <?= json_encode($cp['t3_texto']) ?>);
     makeQuill('edTexto2',  'inpTexto2',  <?= json_encode($cp['texto2']) ?>);
 
-    var quillFields = ['Titulo','TituloD','Texto1','T1titulo','T1texto','T2titulo','T2texto','T3titulo','T3texto','Texto2'];
+    var quillFields = ['Titulo','Texto1','T1titulo','T1texto','T2titulo','T2texto','T3titulo','T3texto','Texto2'];
 
     document.getElementById('formApoiar').addEventListener('submit', function (e) {
         e.preventDefault();

@@ -1,0 +1,5 @@
+Options -Indexes
+RewriteEngine On
+
+# Redirecionar raiz para /bioetica
+RewriteRule ^$ /bioetica [R=301,L]

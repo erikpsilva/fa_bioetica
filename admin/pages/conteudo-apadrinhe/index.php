@@ -2,11 +2,12 @@
 <?php
 require_once ROOT . '/config/database.php';
 $ca = [
-    'pretitulo'       => 'Apadrinhe',
-    'titulo'          => 'Veja porque sua doação',
-    'titulo_destaque' => 'pode mudar vidas.',
-    'texto'           => '<p>Somos financiados exclusivamente por pessoas que acreditam na ciência sem animais. Atuamos onde as decisões realmente acontecem: nas comissões de ética, regulações e normas científicas.</p><p>Nossa missão é reduzir e substituir o uso de animais em pesquisa e ensino. É dentro das <strong>CEUAs (Comissões de Ética no Uso de Animais)</strong> que esse impacto começa.</p><p>Nosso principal instrumento é o <em>Curso de Formação em Proteção dos Animais nas CEUAs</em>, em parceria com a UFPR. Ele prepara representantes da sociedade civil para atuar nessas comissões, influenciando diretamente a aprovação de projetos com animais.</p><p>Cada representante pode impactar centenas ou até <strong>milhares de animais por ano</strong> em uma única instituição.</p>',
-    'imagem'          => 'images/imgCientista.jpg',
+    'pretitulo'   => 'Apadrinhe',
+    'titulo'      => 'Veja porque sua doação <strong>pode mudar vidas.</strong>',
+    'texto'       => '<p>Somos financiados exclusivamente por pessoas que acreditam na ciência sem animais. Atuamos onde as decisões realmente acontecem: nas comissões de ética, regulações e normas científicas.</p><p>Nossa missão é reduzir e substituir o uso de animais em pesquisa e ensino. É dentro das <strong>CEUAs (Comissões de Ética no Uso de Animais)</strong> que esse impacto começa.</p><p>Nosso principal instrumento é o <em>Curso de Formação em Proteção dos Animais nas CEUAs</em>, em parceria com a UFPR. Ele prepara representantes da sociedade civil para atuar nessas comissões, influenciando diretamente a aprovação de projetos com animais.</p><p>Cada representante pode impactar centenas ou até <strong>milhares de animais por ano</strong> em uma única instituição.</p>',
+    'imagem'      => 'images/imgCientista.jpg',
+    'botao_texto' => 'QUERO APADRINHAR',
+    'botao_valor' => 120.00,
 ];
 try { $r = getDbConnection()->query("SELECT * FROM conteudo_apadrinhe WHERE id = 1")->fetch(); if ($r) $ca = $r; } catch (Exception $e) {}
 ?>
@@ -29,7 +30,7 @@ try { $r = getDbConnection()->query("SELECT * FROM conteudo_apadrinhe WHERE id =
             <div class="row adminInicio__header">
                 <div class="col-md-12">
                     <h2>Conteúdo Apadrinhe</h2>
-                    <p>Seção "Apadrinhe" da página inicial. Use <strong>negrito</strong> para destaque — no site aparece em semi-negrito.</p>
+                    <p>Seção "Apadrinhe" da página inicial. Use <strong>negrito</strong> para destacar partes do título e do texto.</p>
                 </div>
             </div>
 
@@ -48,21 +49,12 @@ try { $r = getDbConnection()->query("SELECT * FROM conteudo_apadrinhe WHERE id =
                                    placeholder="Ex: Apadrinhe">
                         </div>
 
-                        <div class="contRow">
-                            <div class="contField">
-                                <label>Título <em>*</em></label>
-                                <div class="contQuillWrap contQuillWrap--sm" id="wrapTitulo">
-                                    <div id="edTitulo"></div>
-                                </div>
-                                <input type="hidden" name="titulo" id="inpTitulo">
+                        <div class="contField">
+                            <label>Título <em>* (use negrito para destacar partes do texto)</em></label>
+                            <div class="contQuillWrap contQuillWrap--sm" id="wrapTitulo">
+                                <div id="edTitulo"></div>
                             </div>
-                            <div class="contField">
-                                <label>Complemento em destaque <em>* (aparece em negrito após o título)</em></label>
-                                <div class="contQuillWrap contQuillWrap--sm" id="wrapTituloD">
-                                    <div id="edTituloD"></div>
-                                </div>
-                                <input type="hidden" name="titulo_destaque" id="inpTituloD">
-                            </div>
+                            <input type="hidden" name="titulo" id="inpTitulo">
                         </div>
 
                         <div class="contField">
@@ -71,6 +63,21 @@ try { $r = getDbConnection()->query("SELECT * FROM conteudo_apadrinhe WHERE id =
                                 <div id="edTexto"></div>
                             </div>
                             <input type="hidden" name="texto" id="inpTexto">
+                        </div>
+
+                        <div class="contRow">
+                            <div class="contField">
+                                <label for="iBotaoTexto">Texto do botão <em>*</em></label>
+                                <input id="iBotaoTexto" name="botao_texto" type="text"
+                                       value="<?= htmlspecialchars($ca['botao_texto']) ?>"
+                                       placeholder="Ex: QUERO APADRINHAR">
+                            </div>
+                            <div class="contField">
+                                <label for="iBotaoValor">Valor cobrado pelo botão <em>* (em reais)</em></label>
+                                <input id="iBotaoValor" name="botao_valor" type="number" min="1" step="0.01"
+                                       value="<?= htmlspecialchars(number_format((float)($ca['botao_valor'] ?? 120), 2, '.', '')) ?>"
+                                       placeholder="Ex: 120">
+                            </div>
                         </div>
 
                         <div class="contField">
@@ -117,9 +124,8 @@ try { $r = getDbConnection()->query("SELECT * FROM conteudo_apadrinhe WHERE id =
 
     function isEmpty(html) { return html.replace(/<[^>]*>/g, '').trim() === ''; }
 
-    makeQuill('edTitulo',  'inpTitulo',  <?= json_encode($ca['titulo']) ?>);
-    makeQuill('edTituloD', 'inpTituloD', <?= json_encode($ca['titulo_destaque']) ?>);
-    makeQuill('edTexto',   'inpTexto',   <?= json_encode($ca['texto']) ?>);
+    makeQuill('edTitulo', 'inpTitulo', <?= json_encode($ca['titulo']) ?>);
+    makeQuill('edTexto',  'inpTexto',  <?= json_encode($ca['texto']) ?>);
 
     document.getElementById('apadrImgInput').addEventListener('change', function () {
         if (this.files && this.files[0]) {
@@ -135,11 +141,18 @@ try { $r = getDbConnection()->query("SELECT * FROM conteudo_apadrinhe WHERE id =
         var fb  = document.getElementById('feedback');
         var valid = true;
 
-        ['Titulo', 'TituloD', 'Texto'].forEach(function (key) {
+        ['Titulo', 'Texto'].forEach(function (key) {
             var inp  = document.getElementById('inp' + key);
             var wrap = document.getElementById('wrap' + key);
             if (isEmpty(inp ? inp.value : '')) { if (wrap) wrap.classList.add('is-invalid'); valid = false; }
             else { if (wrap) wrap.classList.remove('is-invalid'); }
+        });
+
+        ['iBotaoTexto', 'iBotaoValor'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (!el || !el.value.trim() || (id === 'iBotaoValor' && parseFloat(el.value) <= 0)) {
+                el && el.classList.add('is-invalid'); valid = false;
+            } else { el && el.classList.remove('is-invalid'); }
         });
 
         if (!valid) { fb.textContent = 'Preencha todos os campos obrigatórios.'; fb.className = 'contFeedback contFeedback--err'; return; }
