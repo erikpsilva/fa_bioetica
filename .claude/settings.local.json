@@ -11,7 +11,9 @@
       "Bash(xargs grep -l \"calculator\\\\|calculadora\")",
       "PowerShell(& \"C:\\\\xampp\\\\mysql\\\\bin\\\\mysql.exe\" -u root forum3858119_bioetica -e \"ALTER TABLE conteudo_apadrinhe DROP COLUMN botao_link, DROP COLUMN botao_target, ADD COLUMN botao_valor DECIMAL\\(10,2\\) NOT NULL DEFAULT 120.00;\")",
       "PowerShell(& \"C:\\\\xampp\\\\mysql\\\\bin\\\\mysql.exe\" -u root forum3858119_bioetica -e \"DESCRIBE conteudo_apadrinhe;\")",
-      "Bash(\"C:/xampp/mysql/bin/mysql.exe\" -u root forum3858119_bioetica -e \"SHOW COLUMNS FROM conteudo_apadrinhe; SHOW COLUMNS FROM conteudo_apoiar; SHOW COLUMNS FROM conteudo_intro;\")"
+      "Bash(\"C:/xampp/mysql/bin/mysql.exe\" -u root forum3858119_bioetica -e \"SHOW COLUMNS FROM conteudo_apadrinhe; SHOW COLUMNS FROM conteudo_apoiar; SHOW COLUMNS FROM conteudo_intro;\")",
+      "Bash(Get-ChildItem -Path \"c:\\\\xampp\\\\htdocs\\\\fa_bioetica\" -Recurse -Filter \"*.sql\")",
+      "Bash(Select-Object FullName)"
     ]
   }
 }
