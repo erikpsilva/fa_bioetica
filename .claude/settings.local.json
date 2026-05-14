@@ -13,7 +13,11 @@
       "PowerShell(& \"C:\\\\xampp\\\\mysql\\\\bin\\\\mysql.exe\" -u root forum3858119_bioetica -e \"DESCRIBE conteudo_apadrinhe;\")",
       "Bash(\"C:/xampp/mysql/bin/mysql.exe\" -u root forum3858119_bioetica -e \"SHOW COLUMNS FROM conteudo_apadrinhe; SHOW COLUMNS FROM conteudo_apoiar; SHOW COLUMNS FROM conteudo_intro;\")",
       "Bash(Get-ChildItem -Path \"c:\\\\xampp\\\\htdocs\\\\fa_bioetica\" -Recurse -Filter \"*.sql\")",
-      "Bash(Select-Object FullName)"
+      "Bash(Select-Object FullName)",
+      "Bash(Get-ChildItem -Force)",
+      "Bash(Select-Object -Property Name, PSIsContainer)",
+      "Read(//c/xampp/**)",
+      "Bash(./mysql/bin/mysql.exe -u root forum3858119_bioetica -e ' *)"
     ]
   }
 }

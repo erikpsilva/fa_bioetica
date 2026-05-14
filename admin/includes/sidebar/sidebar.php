@@ -89,6 +89,13 @@
             </li>
 
             <li class="sidebar__item">
+                <a href="<?= BASE_URL ?>/admin/controle-links"
+                   class="sidebar__link <?= ($subRoute === 'controle-links') ? 'sidebar__link--active' : '' ?>">
+                    Controle de Links
+                </a>
+            </li>
+
+            <li class="sidebar__item">
                 <a href="<?= BASE_URL ?>/admin/configuracoes"
                    class="sidebar__link <?= ($subRoute === 'configuracoes') ? 'sidebar__link--active' : '' ?>">
                     Configurações
